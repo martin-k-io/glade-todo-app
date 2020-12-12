@@ -16,3 +16,21 @@ ToDo App for Linux Desktop with GTK+ and Glade
     * All items must be saved as files in the users dir in a folder named .gtk_todo_app
 * Allows users to archive ToDo items
     * Archived items should be put in their own folder named archived
+
+
+# Packages to be installed on Ubuntu
+
+ * libxml2-utils
+ * libgtk
+ * libglib2.0-bin - to produce binary resources file
+
+# Check packages versions
+
+ * ruby --version
+ * dpkg -l libgtk-3-0
+ * dpkg -l libglib2.0-bin
+
+
+# Tutorial followed
+
+https://opensource.com/article/18/4/creating-linux-desktop-application-ruby
