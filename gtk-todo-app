@@ -1,13 +1,10 @@
 #!/usr/bin/env ruby
-
 require 'gtk3'
 
-app = Gtk::Application.new 'com.martink-i-o.gtk-todo-app', :flags_none
+# Require all ruby files in the application folder recursively
+application_root_path = File.expand_path(__dir__)
+Dir[File.join(application_root_path, '**', '*.rb')].each { |file| require file }
 
-app.signal_connect :activate do |application|
-  window = Gtk::ApplicationWindow.new(application)
-  window.set_title 'Hello GTK+Ruby!'
-  window.present
-end
+app = Gtk::Application.new
 
 puts app.run
