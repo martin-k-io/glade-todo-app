@@ -13,6 +13,6 @@ ToDo App for Linux Desktop with GTK+ and Glade
 * A Desktop Application with UI
 * Allows users to set properties for each item(e.g. priority)
 * Allows users to create and edit ToDo items
-    * All items must be saved as files in the users dir in a foldr named .gtk_todo_tutorial
+    * All items must be saved as files in the users dir in a folder named .gtk_todo_app
 * Allows users to archive ToDo items
     * Archived items should be put in their own folder named archived
