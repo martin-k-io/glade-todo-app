@@ -27,7 +27,7 @@ module Todo
       notes_text_view.buffer.text = item.notes if item.notes
 
       # Configure the combo box
-      model = GTK::ListStore.new(String)
+      model = Gtk::ListStore.new(String)
       Todo::Item::PRIORITIES.each do |priority|
         iterator = model.append
         iterator[0] = priority
