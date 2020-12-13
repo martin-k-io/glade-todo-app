@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require 'gtk3'
 require 'fileutils'
 
@@ -6,7 +8,7 @@ require 'fileutils'
 application_root_path = File.expand_path(__dir__)
 Dir[File.join(application_root_path, '**', '*.rb')].each { |file| require file }
 
-# Define the source & target files of the glib-compile-resources command
+# Define the input & output files of the command
 resource_xml = File.join(application_root_path, 'resources', 'gresources.xml')
 resource_bin = File.join(application_root_path, 'gresource.bin')
 
@@ -16,10 +18,13 @@ system('glib-compile-resources',
        '--sourcedir', File.dirname(resource_xml),
        resource_xml)
 
+resource = Gio::Resource.load(resource_bin)
+Gio::Resources.register(resource)
+
 at_exit do
-  # Before existing, please remove the binary we produced, thanks.
+  # Before exiting, remove the binary we produced
   FileUtils.rm_f(resource_bin)
 end
 
-app = Gtk::Application.new
+app = Todo::Application.new
 puts app.run
