@@ -18,7 +18,7 @@ module Todo
       set_title 'GTK+ Simple ToDo with Glade UI'
 
       add_new_item_button.signal_connect('clicked') do |button, application|
-        new_item_window = NewItemWIndow.new(application)
+        new_item_window = NewItemWindow.new(application)
         new_item_window.present
       end
     end
