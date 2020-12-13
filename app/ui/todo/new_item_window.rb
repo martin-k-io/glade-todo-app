@@ -18,8 +18,27 @@ module Todo
       end
     end
 
-    def initialize(application)
+    def initialize(application, item)
       super(application: application)
+      set_title "ToDo item #{item.id} - #{item.is_new? ? 'Create' : 'Edit' } Mode"
+
+      id_value_label.text = item.id
+      title_text_entry.text = item.title if item.title
+      notes_text_view.buffer.text = item.notes if item.notes
+
+      # Configure the combo box
+      model = GTK::ListStore.new(String)
+      Todo::Item::PRIORITIES.each do |priority|
+        iterator = model.append
+        iterator[0] = priority
+      end
+
+      priority_combo_box.model = model
+      renderer = Gtk::CellRendererText.new
+      priority_combo_box.pack_start(renderer, true)
+      priority_combo_box.set_attributes(renderer, "text" => 0)
+
+      priority_combo_box.set_active(Todo::Item::PRIORITIES.index(item.priority)) if item.priority
     end
   end
 end
