@@ -44,6 +44,15 @@ module Todo
       cancel_button.signal_connect('clicked') do |button|
         close
       end
+
+      # Save the item on Save btn clicked
+      save_button.signal_connect('clicked') do |button|
+        item.title = title_text_entry.text
+        item.notes = notes_text_view.buffer.text
+        item.priority = priority_combo_box.active_iter.get_value(0) if priority_combo_box.active_iter
+        item.save!
+        close
+      end
     end
   end
 end
