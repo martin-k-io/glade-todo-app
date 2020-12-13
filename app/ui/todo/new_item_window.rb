@@ -39,6 +39,11 @@ module Todo
       priority_combo_box.set_attributes(renderer, "text" => 0)
 
       priority_combo_box.set_active(Todo::Item::PRIORITIES.index(item.priority)) if item.priority
+
+      # Close window on Cancel btn clicked
+      cancel_button.signal_connect('clicked') do |button|
+        close
+      end
     end
   end
 end
